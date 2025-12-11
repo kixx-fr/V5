@@ -663,4 +663,32 @@ body.dark-mode .thumbnails-row img { background: #333; border-color: #444; }
 .btn-secondary:hover { background: var(--bg-secondary); }
 
 body.dark-mode .cookie-content { background: #1a1a1a; border-top: 1px solid #333; }
+
 body.dark-mode .btn-secondary { border-color: #444; color: #fff; }
+/* --- CORRECTIF URGENCE : MODE PAYSAGE & TABLETTE --- */
+/* Force 3 colonnes dès que l'écran dépasse 600px de large (Tablette ou Mobile Paysage) */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr) !important; /* Passe à 3 colonnes au lieu de 2 */
+        gap: 15px !important;
+    }
+    
+    /* Réduit la hauteur des images pour qu'elles ne prennent pas tout l'écran */
+    .product-image-wrapper {
+        aspect-ratio: auto !important;
+        height: 200px !important; /* Force une hauteur fixe raisonnable */
+    }
+    .product-image-wrapper img {
+        object-fit: contain !important;
+    }
+}
+
+/* Force 4 colonnes si le mobile est en mode paysage très large (type iPhone Max) */
+@media (max-height: 500px) and (orientation: landscape) {
+    .product-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+    .product-image-wrapper {
+        height: 150px !important; /* Encore plus petit en hauteur */
+    }
+}
